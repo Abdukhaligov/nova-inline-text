@@ -37,7 +37,7 @@ export default {
         )
         .then(
           () => {
-              Nova.success(`${this.field.name} updated`);
+              Nova.success(this.field.successMessage ? this.field.successMessage : `${this.field.name} updated`);
 
             this.refreshTable();
           },

@@ -2,10 +2,10 @@
 
 namespace Pdmfc\NovaFields;
 
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class InlineText extends Text
+class InlineText extends Field
 {
     /**
      * @var bool
@@ -30,6 +30,13 @@ class InlineText extends Text
      * @var string
      */
     protected $event = 'keyup.enter';
+
+    /**
+     * The message to be displayed when the field is saved.
+     *
+     * @var string|null
+     */
+    protected $successMessage = null;
 
     /**
      * Allows field to be editable on index view.
@@ -63,8 +70,17 @@ class InlineText extends Text
     }
 
     /**
+     * Set the message to be displayed when the field is saved.
      *
+     * @return self
      */
+    public function successMessage(string $message)
+    {
+        $this->successMessage = $message;
+
+        return $this;
+    }
+
     public function saveOn(string $event)
     {
         $this->event = $event;
@@ -86,6 +102,7 @@ class InlineText extends Text
         $this->withMeta([
             'inlineOnIndex' => $this->inlineOnIndex,
             'refreshOnSaving' => $this->refreshOnSaving,
+            'successMessage' => $this->successMessage,
             'event' => $this->event,
         ]);
     }
