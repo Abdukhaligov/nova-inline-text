@@ -2,10 +2,10 @@
 
 namespace Pdmfc\NovaFields;
 
-use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class InlineText extends Field
+class InlineText extends Text
 {
     /**
      * @var bool
